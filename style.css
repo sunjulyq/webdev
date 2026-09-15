@@ -1,0 +1,110 @@
+/* Color Palette:
+   #f9f9f9 - Light Gray
+   #333333 - Dark Gray
+   #1e1e1e - Almost Black
+   #ffffff - White
+   #007bff - Blue
+*/
+
+/* Basic styles for the entire page */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Header contains the portfolio title, student information, and navigation */
+header {
+  text-align: center;
+  background: #1e1e1e;
+  color: white;
+  padding: 1.5em 0;
+}
+
+/* Flexbox is used to arrange the navigation links in a horizontal row */
+nav {
+  display: flex;
+
+  /* Centers all navigation links inside the header */
+  justify-content: center;
+
+  /* Adds space between each navigation link */
+  gap: 20px;
+
+  /* Adds space between the description and navigation */
+  margin-top: 15px;
+}
+
+/* Styles each individual navigation link */
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+}
+
+/* Main page layout uses CSS Grid to organize the content into two columns */
+.content-grid {
+  display: grid;
+
+  /* Creates two equal-width columns */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  /* Adds space between rows and columns */
+  gap: 20px;
+
+  /* Prevents the content from becoming too wide on large screens */
+  max-width: 1000px;
+
+  /* Centers the entire grid on the page */
+  margin: 30px auto;
+
+  /* Adds space on the left and right sides of the grid */
+  padding: 0 20px;
+}
+
+/* Each section becomes one item inside the CSS Grid */
+section {
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+/* Adds a line underneath section headings to separate them from the content */
+h2 {
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+/* Flexbox is also used here to arrange the form fields vertically */
+form {
+  display: flex;
+
+  /* Places the form elements from top to bottom */
+  flex-direction: column;
+
+  /* Adds consistent space between each form element */
+  gap: 10px;
+}
+
+/* Gives form controls comfortable padding and keeps their font consistent */
+input,
+textarea,
+button {
+  font: inherit;
+  padding: 10px;
+}
+
+/* Changes the mouse cursor when the user can click the button */
+button {
+  cursor: pointer;
+}
+
+/* Responsive layout: on smaller screens, change the grid to one column */
+@media (max-width: 700px) {
+  .content-grid {
+    /* Stacks the sections vertically so the page fits smaller screens */
+    grid-template-columns: 1fr;
+  }
+}
