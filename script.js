@@ -1,33 +1,44 @@
 
-/* Gets the theme toggle button from the HTML */
-const themeToggle = document.getElementById("theme-toggle");
+/* Gets the theme toggle button */
+const themeToggle = document.querySelector("#theme-toggle");
 
-/* Loads the saved theme or uses light mode by default */
-const savedTheme = localStorage.getItem("theme") || "light";
+/* Loads the saved theme from localStorage */
+function retrieveTheme() {
+  const theme = localStorage.getItem("website_theme");
 
-/* Applies the saved theme when the page loads */
-document.documentElement.setAttribute("data-theme", savedTheme);
+  /* Applies the saved theme when one exists */
+  document.body.classList.remove("dark_mode");
 
-/* Updates the button text based on the current theme */
-themeToggle.textContent =
-  savedTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
+  if (theme === "dark_mode") {
+    document.body.classList.add("dark_mode");
+  }
+
+  /* Updates the button label */
+  themeToggle.textContent =
+    document.body.classList.contains("dark_mode")
+      ? "Switch to Light Mode"
+      : "Switch to Dark Mode";
+}
 
 /* Switches themes when the button is clicked */
 themeToggle.addEventListener("click", function () {
-  // Checks which theme is currently active
-  const currentTheme =
-    document.documentElement.getAttribute("data-theme");
+  document.body.classList.toggle("dark_mode");
 
-  // Switches to the opposite theme
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  /* Saves the selected theme */
+  if (document.body.classList.contains("dark_mode")) {
+    localStorage.setItem("website_theme", "dark_mode");
+  } else {
+    localStorage.setItem("website_theme", "default");
+  }
 
-  // Applies the selected theme to the page
-  document.documentElement.setAttribute("data-theme", newTheme);
+  /* Updates the button label */
+  retrieveTheme();
+});
 
-  // Saves the theme so it stays selected after refreshing
-  localStorage.setItem("theme", newTheme);
+/* Restores the saved theme when the page loads */
+retrieveTheme();
 
-  // Updates the button text
-  themeToggle.textContent =
-    newTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
+/* Synchronizes the theme if it changes in another tab */
+window.addEventListener("storage", function () {
+  retrieveTheme();
 });
