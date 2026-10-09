@@ -1,40 +1,200 @@
+
 /* Color Palette:
+   Light Theme:
    #f9f9f9 - Light Gray
    #333333 - Dark Gray
    #1e1e1e - Almost Black
    #ffffff - White
    #007bff - Blue
+
+   Dark Theme:
+   #121212 - Dark Background
+   #f5f5f5 - Light Text
+   #252525 - Dark Cards
+   #444444 - Dark Borders
+   #4d9fff - Blue
 */
+
+/* CSS variables define the colors used in light mode */
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #333333;
+  --header-color: #1e1e1e;
+  --header-text: #ffffff;
+  --card-color: #ffffff;
+  --border-color: #dddddd;
+  --link-color: #007bff;
+  --button-color: #007bff;
+  --input-bg: #ffffff;
+  --input-text: #333333;
+}
+
+/* Colors used when dark mode is selected */
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --header-color: #202020;
+  --header-text: #ffffff;
+  --card-color: #252525;
+  --border-color: #444444;
+  --link-color: #7db7ff;
+  --button-color: #4d9fff;
+  --input-bg: #333333;
+  --input-text: #ffffff;
+}
 
 /* Basic styles for the entire page */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Header contains the portfolio title, student information, and navigation */
 header {
   text-align: center;
-  background: #1e1e1e;
-  color: white;
+  background: var(--header-color);
+  color: var(--header-text);
   padding: 1.5em 0;
 }
 
-/* Flexbox is used to arrange the navigation links in a horizontal row */
+/* Flexbox arranges navigation links in a horizontal row */
 nav {
   display: flex;
-
-  /* Centers all navigation links inside the header */
   justify-content: center;
-
-  /* Adds space between each navigation link */
   gap: 20px;
-
-  /* Adds space between the description and navigation */
   margin-top: 15px;
+}
+
+/* Styles each individual navigation link */
+nav a {
+  color: var(--header-text);
+  text-decoration: none;
+  padding: 8px 12px;
+}
+
+/* Underlines navigation links when hovered */
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main page layout uses CSS Grid to organize content into two columns */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* Each section becomes one item inside the CSS Grid */
+section {
+  padding: 20px;
+  background: var(--card-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Adds a line underneath section headings */
+h2 {
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 5px;
+}
+
+/* Styles links inside the page sections */
+section a {
+  color: var(--link-color);
+}
+
+/* Flexbox arranges the form fields vertically */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Gives form controls consistent fonts and comfortable padding */
+input,
+textarea,
+button {
+  font: inherit;
+  padding: 10px;
+}
+
+/* Styles form fields for both themes */
+input,
+textarea {
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+/* Makes placeholder text visible in both themes */
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Changes the mouse cursor when the user can click a button */
+button {
+  cursor: pointer;
+}
+
+/* Styles the theme toggle button */
+#theme-toggle {
+  background-color: var(--button-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-top: 15px;
+}
+
+/* Adds a hover effect to the theme toggle button */
+#theme-toggle:hover {
+  opacity: 0.85;
+}
+
+/* Styles the form submit button */
+form button {
+  background-color: var(--button-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Adds a hover effect to the submit button */
+form button:hover {
+  opacity: 0.85;
+}
+
+/* Highlights controls when they receive keyboard focus */
+input:focus,
+textarea:focus,
+button:focus-visible,
+nav a:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 700px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Allows navigation links to wrap on narrow screens */
+  nav {
+    flex-wrap: wrap;
+  }
+}  margin-top: 15px;
 }
 
 /* Styles each individual navigation link */
