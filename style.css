@@ -29,8 +29,8 @@
   --input-text: #333333;
 }
 
-/* Colors used when dark mode is selected */
-[data-theme="dark"] {
+/* Colors used when dark mode is active */
+.dark_mode {
   --bg-color: #121212;
   --text-color: #f5f5f5;
   --header-color: #202020;
